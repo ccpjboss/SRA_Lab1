@@ -7,8 +7,7 @@ if ( ~exist("tbot") )
 end 
 
 goal_pose = [1, 1.5, pi/2];
-% tbot.setPose(0,1,0);
-
+last_update=tic;
 k_rho = 0.1;
 k_alpha = 0.3;
 k_beta = -0.2;
@@ -16,17 +15,9 @@ x_ = [];
 y_ = [];
 
 [x,y,theta]=tbot.readPose();
-%theta = deg2rad(theta);
 
 rho_=1;
 beta=1;
-rho_ = sqrt(dx^2 + dy^2);
-
-alpha_ = -theta + atan2(dy,dx);
-alpha_ = atan2(sin(alpha_),cos(alpha_));
-
-beta_ = -theta - alpha_ + goal_pose(3);
-beta_ = atan2(sin(beta_),cos(beta_));
 
 while (rho_>0.01 || beta_>0.05)
     dx = goal_pose(1) - x;
