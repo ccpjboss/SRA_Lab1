@@ -10,7 +10,7 @@ kv = 0.1;
 ks = 0.4;
 vMax = 0.2;
 
-goal_pose = [1 1.5];
+goal_pose = [2 -0.25];
 dist = 1;
 x_= [];
 y_= [];
@@ -25,16 +25,18 @@ while (dist > 0.05)
     dist = sqrt((goal_pose(1)-x)^2+(goal_pose(2)-y)^2);
     v = kv*dist
 
-    if (v > vMax)
-        v = vMax;
-    end
+%     if (v > vMax)
+%         v = vMax;
+%     end
 
     phi = atan((goal_pose(2)-y)/(goal_pose(1)-x));   
     w = ks*atan2(sin(phi-theta),cos(phi-theta));
     tbot.setVelocity(v,w);
 end
 
-tbot.resetPose();
+tbot.stop();
+
+% tbot.resetPose();
 
 function plot_pose(x, y, theta, goal_pose, x_, y_)
     figure(1); clf; hold on;            % clear figure, hold plots
