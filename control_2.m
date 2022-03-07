@@ -36,7 +36,7 @@ while (1)
     plot_pose(x, y, theta,reta,x_,y_);
 
     d = dot(reta,[x,y,1])/sqrt(reta(1)^2+reta(2)^2);
-    phi = atan(-reta(1)/reta(2));
+    phi = atan2(-reta(1),reta(2));
 
     alpha_d = -kd*d;
     alpha_h = kh*atan2(sin(phi-theta),cos(phi-theta));
